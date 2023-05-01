@@ -20,10 +20,14 @@ class User
 end
 
 describe User do
-  it 'is born in a leap year when born in 2000' do
-    user = User.new('Francisca', '2000-01-01')
-    actual = user.born_in_leap_year?
-    expected = true
-    expect(actual).to eq expected
+  context 'when born in 2000' do
+    it 'is born in a leap year' do
+      user = User.new('Francisca', '2000-01-01')
+      expect(user.born_in_leap_year?).to eq true
+    end
+
+    # example 'is at voting age' do
+      
+    # end
   end
 end

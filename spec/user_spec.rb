@@ -20,13 +20,13 @@ class User
 end
 
 describe User do
-  before { @user = User.new('Francisca', "#{year}-01-01") }
+  let(:user) { User.new('Francisca', "#{year}-01-01") }
 
   context 'when born in 2001' do
     let(:year) { 2001 }
 
     it 'is not born in a leap year' do
-      expect(@user).not_to be_born_in_leap_year
+      expect(user).not_to be_born_in_leap_year
     end
   end
 
@@ -34,7 +34,7 @@ describe User do
     let(:year) { 2000 }
 
     it 'is born in a leap year' do
-      expect(@user).to be_born_in_leap_year
+      expect(user).to be_born_in_leap_year
     end
   end
 
@@ -42,7 +42,7 @@ describe User do
     let(:year) { 1900 }
 
     it 'is not born in a leap year' do
-      expect(@user).not_to be_born_in_leap_year
+      expect(user).not_to be_born_in_leap_year
     end
   end
 
@@ -50,7 +50,7 @@ describe User do
     let(:year) { 2004 }
 
     it 'is born in a leap year' do
-      expect(@user).to be_born_in_leap_year
+      expect(user).to be_born_in_leap_year
     end
   end
 end

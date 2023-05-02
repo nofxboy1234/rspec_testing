@@ -26,7 +26,7 @@ describe User do
     let(:year) { 2001 }
 
     it 'is not born in a leap year' do
-      expect(subject).not_to be_born_in_leap_year
+      should_not be_born_in_leap_year
     end
   end
 
@@ -34,7 +34,7 @@ describe User do
     let(:year) { 2000 }
 
     it 'is born in a leap year' do
-      expect(subject).to be_born_in_leap_year
+      should be_born_in_leap_year
     end
   end
 
@@ -42,7 +42,7 @@ describe User do
     let(:year) { 1900 }
 
     it 'is not born in a leap year' do
-      expect(subject).not_to be_born_in_leap_year
+      should_not be_born_in_leap_year
     end
   end
 
@@ -50,7 +50,7 @@ describe User do
     let(:year) { 2004 }
 
     it 'is born in a leap year' do
-      expect(subject).to be_born_in_leap_year
+      should be_born_in_leap_year
     end
   end
 end

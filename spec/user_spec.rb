@@ -25,9 +25,10 @@ describe User do
   context 'when born in 2001' do
     let(:year) { 2001 }
 
-    it "returns the name" do
-      expect(subject.name).to eq "Francisca"
-    end
+    it { should be_named("Francisca") }
+    # it "returns the name" do
+    #   expect(subject.name).to eq "Francisca"
+    # end
 
     it { should_not be_born_in_leap_year }
   end
@@ -49,5 +50,11 @@ describe User do
     let(:year) { 2004 }
 
     it { should be_born_in_leap_year }
+  end
+end
+
+RSpec::Matchers.define(:be_named) do |expected|
+  match do |object|
+    object.name == expected
   end
 end

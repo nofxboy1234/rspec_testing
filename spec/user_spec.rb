@@ -15,6 +15,7 @@ class User
   end
 
   def born_in_leap_year?
+    # false
     leap_year?(Date.parse(@birthday).year)
   end
 end
@@ -23,7 +24,8 @@ describe User do
   context 'when born in 2000' do
     it 'is born in a leap year' do
       user = User.new('Francisca', '2000-01-01')
-      expect(user.born_in_leap_year?).to eq true
+      # expect(user.born_in_leap_year?).to eq true
+      expect(user).to be_born_in_leap_year
     end
 
     # example 'is at voting age' do

@@ -15,38 +15,42 @@ class User
   end
 
   def born_in_leap_year?
-    # false
     leap_year?(Date.parse(@birthday).year)
   end
 end
 
 describe User do
-  context 'when born in 2001' do
-    it 'is not born in a leap year' do
-      user = User.new('Francisca', '2001-01-01')
-      expect(user).not_to be_born_in_leap_year
-    end
-  end
+  before { @user = User.new('Francisca', "#{year}-01-01") }
 
-  context 'when born in 1900' do
+  context 'when born in 2001' do
+    let(:year) { 2001 }
+
     it 'is not born in a leap year' do
-      user = User.new('Francisca', '1900-01-01')
-      expect(user).not_to be_born_in_leap_year
+      expect(@user).not_to be_born_in_leap_year
     end
   end
 
   context 'when born in 2000' do
+    let(:year) { 2000 }
+
     it 'is born in a leap year' do
-      user = User.new('Francisca', '2000-01-01')
-      expect(user).to be_born_in_leap_year
+      expect(@user).to be_born_in_leap_year
+    end
+  end
+
+  context 'when born in 1900' do
+    let(:year) { 1900 }
+
+    it 'is not born in a leap year' do
+      expect(@user).not_to be_born_in_leap_year
     end
   end
 
   context 'when born in 2004' do
+    let(:year) { 2004 }
+
     it 'is born in a leap year' do
-      user = User.new('Francisca', '2004-01-01')
-      expect(user).to be_born_in_leap_year
+      expect(@user).to be_born_in_leap_year
     end
   end
-
 end

@@ -25,32 +25,25 @@ describe User do
   context 'when born in 2001' do
     let(:year) { 2001 }
 
-    it 'is not born in a leap year' do
-      should_not be_born_in_leap_year
-    end
-  end
-
-  context 'when born in 2000' do
-    let(:year) { 2000 }
-
-    it 'is born in a leap year' do
-      should be_born_in_leap_year
-    end
+    it { should_not be_born_in_leap_year }
   end
 
   context 'when born in 1900' do
     let(:year) { 1900 }
 
-    it 'is not born in a leap year' do
-      should_not be_born_in_leap_year
-    end
+    it { should_not be_born_in_leap_year }
   end
+
+  context 'when born in 2000' do
+    let(:year) { 2000 }
+
+    it { should be_born_in_leap_year }
+  end
+
 
   context 'when born in 2004' do
     let(:year) { 2004 }
 
-    it 'is born in a leap year' do
-      should be_born_in_leap_year
-    end
+    it { should be_born_in_leap_year }
   end
 end

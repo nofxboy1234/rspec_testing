@@ -1,4 +1,7 @@
-class blog
+# require './lib/post'
+require_relative 'post'
+
+class Blog
   attr_reader :title, :subdomain, :posts
 
   def initialize(title:, subdomain:)

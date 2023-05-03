@@ -1,6 +1,6 @@
 # Test Double
 #   Test Stub
-#     - allow?
+#     - Uses #allow
 #     - Fake object
 #     - Used in place of a real object
 #     - Return pre-specified hard-coded values in response to method calls
@@ -8,7 +8,7 @@
 #     - Trick your program into working properly under test
 
 #   Mock Object
-#     - expect?
+#     - Uses #expect
 #     - Fake object
 #     - Used in place of a real object
 #     - Listens to the methods called on the mock object
@@ -47,11 +47,11 @@ end
 describe Payment do
   it 'records the payment' do
     # payment_gateway = PaymentGateway.new
-    payment_gateway = double # RSpec::Mocks::Double
+    payment_gateway = double # RSpec::Mocks::Double (Stub)
     allow(payment_gateway).to receive(:charge).and_return(payment_id: 1234)
 
     # logger = Logger.new
-    logger = double
+    logger = double # RSpec::Mocks::Double (Mock)
     expect(logger).to receive(:record_payment).with(1234)
 
     payment = Payment.new(payment_gateway, logger)

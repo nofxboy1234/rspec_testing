@@ -1,5 +1,5 @@
 require './lib/router'
-require './lib/blog'
+# require './lib/blog'
 require './lib/post'
 
 RSpec.describe Router do
@@ -7,7 +7,11 @@ RSpec.describe Router do
 
   describe '#url_for' do
     it 'returns the full URL with protocol, subdomain, and path' do
-      blog = Blog.new(title: 'Brett Codes', subdomain: 'brettcodes')
+      blog = double('Blog', subdomain: 'brettcodes')
+
+      # blog = double('Blog')
+      # allow(blog).to receive(:subdomain).and_return('brettcodes')
+
       post = Post.new(title: 'Using RSpec Test Doubles',
                       content: 'Some stuff', blog: blog)
       

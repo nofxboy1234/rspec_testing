@@ -50,6 +50,8 @@ describe Payment do
     allow(payment_gateway).to receive(:charge).and_return(payment_id: 1234)
 
     logger = double # RSpec::Mocks::Double (Mock)
+    # it needs (not just can, but has to, and it will raise an exception if not)
+    # to receive a record_payment method call with the value 1234
     expect(logger).to receive(:record_payment).with(1234)
 
     payment = Payment.new(payment_gateway, logger)

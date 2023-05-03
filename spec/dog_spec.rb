@@ -11,16 +11,18 @@ RSpec.describe Dog do
 
   describe '#hungry?' do
     context 'when hunger_level is more than 5' do
+      subject { described_class.new(hunger_level: 7) }
+
       it 'returns true' do
-        dog = described_class.new(hunger_level: 7)
-        expect(dog).to be_hungry
+        expect(subject).to be_hungry
       end
     end
 
     context 'when hunger_level is 5 or less' do
+      subject { described_class.new(hunger_level: 5) }
+
       it 'returns false ' do
-        dog = described_class.new(hunger_level: 5)
-        expect(dog).to_not be_hungry
+        expect(subject).to_not be_hungry
       end
     end
   end

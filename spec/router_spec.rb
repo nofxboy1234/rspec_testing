@@ -1,22 +1,28 @@
-require './lib/router'
-# require './lib/blog'
-# require './lib/post'
+# require './lib/router'
 
 RSpec.describe Router do
   subject { described_class.new(domain: 'bloggo.com') }
 
   describe '#url_for' do
-    it 'returns the full URL with protocol, subdomain, and path' do
-      blog = double('Blog', subdomain: 'brettcodes')
+    context 'with a post' do
+      it 'returns the full URL with protocol, subdomain, and path' do
+        post = instance_double('Post', subdomain: 'brettcodes',
+                              slug: 'using-rspec-test-doubles')
 
-      # blog = double('Blog')
-      # allow(blog).to receive(:subdomain).and_return('brettcodes')
+        expect(subject.url_for(post)).to eql(
+          'https://brettcodes.bloggo.com/using-rspec-test-doubles'
+        )
+      end
+    end
 
-      post = double('Post', slug: 'using-rspec-test-doubles', blog: blog)
-      
-      expect(subject.url_for(post)).to eql(
-        'https://brettcodes.bloggo.com/using-rspec-test-doubles'
-      )
+    context 'with a blog' do
+      it 'returns the full URL with protocol and subdomain, with no path' do
+        blog = instance_double('Blog', subdomain: 'brettcodes', slug: '')
+
+        expect(subject.url_for(blog)).to eql(
+          'https://brettcodes.bloggo.com/'
+        )
+      end
     end
   end
 end

@@ -47,10 +47,12 @@ end
 describe Payment do
   it 'records the payment' do
     # payment_gateway = PaymentGateway.new
-    payment_gateway = double
+    payment_gateway = double # RSpec::Mocks::Double
     allow(payment_gateway).to receive(:charge).and_return(payment_id: 1234)
 
-    logger = Logger.new
+    # logger = Logger.new
+    logger = double
+    expect(logger).to receive(:record_payment).with(1234)
 
     payment = Payment.new(payment_gateway, logger)
     payment.total_cents = 1800

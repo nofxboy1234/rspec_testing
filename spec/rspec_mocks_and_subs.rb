@@ -47,11 +47,18 @@ end
 describe Payment do
   it 'records the payment' do
     payment_gateway = double # RSpec::Mocks::Double (Stub)
+    # A stub is only a method with a canned response, it doesn’t care about behavior.
     allow(payment_gateway).to receive(:charge).and_return(payment_id: 1234)
 
     logger = double # RSpec::Mocks::Double (Mock)
-    # it needs (not just can, but has to, and it will raise an exception if not)
+    # It needs (not just can, but has to, and it will raise an exception if not)
     # to receive a record_payment method call with the value 1234
+    # A mock expects methods to be called, if they are not called the test will fail.
+
+    # You use mocks to test the interaction between two objects. 
+    # Instead of testing the output value, like in a regular expectation.
+    # In a regular test you check the return value of a method.
+    # When using a mock you are testing the behavior.
     expect(logger).to receive(:record_payment).with(1234)
 
     payment = Payment.new(payment_gateway, logger)

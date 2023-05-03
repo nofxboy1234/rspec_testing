@@ -1,6 +1,6 @@
 require './lib/router'
 # require './lib/blog'
-require './lib/post'
+# require './lib/post'
 
 RSpec.describe Router do
   subject { described_class.new(domain: 'bloggo.com') }

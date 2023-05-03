@@ -12,8 +12,7 @@ RSpec.describe Router do
       # blog = double('Blog')
       # allow(blog).to receive(:subdomain).and_return('brettcodes')
 
-      post = Post.new(title: 'Using RSpec Test Doubles',
-                      content: 'Some stuff', blog: blog)
+      post = double('Post', slug: 'using-rspec-test-doubles', blog: blog)
       
       expect(subject.url_for(post)).to eql(
         'https://brettcodes.bloggo.com/using-rspec-test-doubles'

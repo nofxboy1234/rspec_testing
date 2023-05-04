@@ -16,6 +16,16 @@
 #     - Help with outputs
 #     - Spy on your program in the cases where you’re not able to test something directly
 
+# If the method under test returns a value & it has no side effects 
+# (creating files, making API requests, etc.) then you don’t need a mock. 
+# Just check for the return value.
+
+# If the method is working with external objects & sending orders to them, 
+# then you can mock the interactions with these objects.
+
+# If the method is REQUESTING data from an external service (like an API), 
+# then you can use a stub to provide this data for testing purposes.
+
 class Payment
   attr_accessor :total_cents
 

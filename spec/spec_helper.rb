@@ -3,6 +3,7 @@ require './lib/router'
 require './lib/post'
 require './lib/order'
 require './lib/tax_calculator'
+require './lib/payment_gateway'
 
 require 'pry-byebug'
 

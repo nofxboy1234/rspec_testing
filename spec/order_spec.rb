@@ -1,5 +1,10 @@
 RSpec.describe Order do
-  subject { Order.new({ state: :created }) }
+  subject do
+    Order.new({ state: :created,
+                payment_method: payment_method })
+  end
+
+  let(:payment_method) { double('credit card') }
 
   describe '#checkout' do
     it 'sets the state to completed' do
@@ -14,7 +19,13 @@ RSpec.describe Order do
       subject.checkout
     end
 
-    it 'calls out to the payment gateway with the items totals and tax'
+    it 'calls out to the payment gateway with the items totals and tax' do
+      expect(PaymentGateway).to receive(:process_payment)
+        .with(30.0, payment_method)
+        .and_return(:success)
+
+      subject.checkout
+    end
 
     it 'emails the buyer'
   end

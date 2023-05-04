@@ -12,6 +12,10 @@ RSpec.describe Order do
   end
 
   describe '#checkout' do
+    before do
+      allow(TaxCalculator).to receive(:calculate).with(subject) { 10.0 }
+    end
+
     it 'sets the state to completed', sets_state: true do
       subject.checkout
 
@@ -21,9 +25,11 @@ RSpec.describe Order do
     it 'calls out to the payment gateway with the items totals and tax',
        calls_out: true do
       expect(TaxCalculator).to receive(:calculate).with(subject) { 10.0 }
+                                                  .ordered
       expect(PaymentGateway).to receive(:process_payment)
         .with(30.0, payment_method)
         .and_return(:success)
+        .ordered
 
       subject.checkout
     end

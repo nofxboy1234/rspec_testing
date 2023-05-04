@@ -8,8 +8,8 @@ class Order
   end
 
   def checkout
-    tax = TaxCalculator.calculate(self)
     items_total = items.sum(&:total)
+    tax = TaxCalculator.calculate(self)
     PaymentGateway.process_payment(tax + items_total, @payment_method)
     @state = :completed
   end

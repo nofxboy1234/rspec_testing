@@ -10,7 +10,13 @@ class Order
   def checkout
     items_total = items.sum(&:total)
     tax = TaxCalculator.calculate(self)
-    PaymentGateway.process_payment(tax + items_total, @payment_method)
-    @state = :completed
+    process_payment_status = PaymentGateway.process_payment(tax + items_total,
+                                                            @payment_method)
+    
+    if process_payment_status == :success
+      @state = :completed
+    else
+      @state = :payment_failed
+    end
   end
 end

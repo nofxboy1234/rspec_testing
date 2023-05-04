@@ -29,9 +29,6 @@ RSpec.describe Router do
       it 'returns a NotRoutableError' do
         unroutable = double('unroutable')
 
-        # expect(subject.url_for(unroutable)).to raise_error(
-        #   described_class::NotRoutableError
-        # )
         expect { subject.url_for(unroutable) }.to raise_error(
           described_class::NotRoutableError
         )

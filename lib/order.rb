@@ -1,5 +1,11 @@
 class Order
+  attr_reader :state
+  
+  def initialize(attrs)
+    @state = attrs[:state] || :created
+  end
+  
   def checkout
-    true
+    @state = :completed
   end
 end

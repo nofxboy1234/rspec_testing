@@ -7,5 +7,15 @@ RSpec.describe Order do
 
       expect(subject.state).to eql(:completed)
     end
+
+    it 'calculates tax based on the order' do
+      expect(TaxCalculator).to receive(:calculate).with(subject) { 10.0 }
+
+      subject.checkout
+    end
+
+    it 'calls out to the payment gateway with the items totals and tax'
+
+    it 'emails the buyer'
   end
 end

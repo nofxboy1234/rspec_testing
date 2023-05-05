@@ -59,6 +59,12 @@ RSpec.describe Order do
 
         expect(subject.state).to eql(:payment_failed)
       end
+
+      it 'does not send the order success email' do
+        expect(Mailer).to_not receive(:send_mail)
+
+        subject.checkout
+      end
     end
   end
 end

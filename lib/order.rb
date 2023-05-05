@@ -13,7 +13,7 @@ class Order
     tax = TaxCalculator.calculate(self)
     process_payment_status = PaymentGateway.process_payment(tax + items_total,
                                                             @payment_method)
-    
+
     if process_payment_status == :success
       @state = :completed
       Mailer.send_mail(:order_success, @buyer_email)

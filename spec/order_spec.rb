@@ -30,7 +30,7 @@ RSpec.describe Order do
 
     context 'when the payment processes successfully' do
       before do
-        expect(PaymentGateway).to receive(:process_payment)
+        allow(PaymentGateway).to receive(:process_payment)
           .and_return(:success)
       end
 
@@ -50,7 +50,7 @@ RSpec.describe Order do
 
     context 'when the payment processes unsuccessfully' do
       before do
-        expect(PaymentGateway).to receive(:process_payment)
+        allow(PaymentGateway).to receive(:process_payment)
           .and_return(:failure)
       end
 

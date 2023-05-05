@@ -1,12 +1,18 @@
 describe DataProcessor do
   let(:processor) { described_class.new }
 
+  it 'calls validator.valid?' do
+    validator = double(:validator)
+    expect(validator).to receive(:valid?).with('foo').and_return(true)
+    
+    processor.process('foo', validator)
+  end
+
   context 'with valid data' do
     it 'adds processed to valid data' do
       # validator = double(:validator, valid?: true)
       validator = double(:validator)
       allow(validator).to receive(:valid?).and_return(true)
-
 
       expect(processor.process('foo', validator)).to eq('foo processed')
     end

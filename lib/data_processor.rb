@@ -4,7 +4,6 @@ class DataProcessor
   def process(data)
     raise Error unless Validator.new.valid?(data)
 
-    # simple logic to show the idea
     "#{data} processed"
   end
 end

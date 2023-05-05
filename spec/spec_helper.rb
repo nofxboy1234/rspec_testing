@@ -5,6 +5,7 @@ require './lib/order'
 require './lib/tax_calculator'
 require './lib/payment_gateway'
 require './lib/mailer'
+require './lib/data_processor'
 
 require 'pry-byebug'
 

@@ -1,10 +1,11 @@
 class Order
-  attr_reader :state, :payment_method, :items
+  attr_reader :state, :payment_method, :items, :buyer_email
 
   def initialize(attrs)
     @state = attrs[:state] || :created
     @payment_method = attrs[:payment_method]
     @items = attrs[:items]
+    @buyer_email = attrs[:buyer_email]
   end
 
   def checkout
@@ -15,6 +16,7 @@ class Order
     
     if process_payment_status == :success
       @state = :completed
+      Mailer.send_mail(:order_success, @buyer_email)
     else
       @state = :payment_failed
     end

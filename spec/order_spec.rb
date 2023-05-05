@@ -2,6 +2,7 @@ RSpec.describe Order do
   subject do
     Order.new({ state: :created,
                 payment_method: payment_method,
+                buyer_email: 'buyer@example.com',
                 items: items })
   end
 
@@ -32,14 +33,19 @@ RSpec.describe Order do
         expect(PaymentGateway).to receive(:process_payment)
           .and_return(:success)
       end
-      
+
       it 'sets the state to completed', sets_state_when_success: true do
         subject.checkout
 
         expect(subject.state).to eql(:completed)
       end
 
-      it 'emails the buyer'
+      it 'emails the buyer' do
+        expect(Mailer).to receive(:send_mail).with(:order_success,
+                                                   'buyer@example.com')
+
+        subject.checkout
+      end
     end
 
     context 'when the payment processes unsuccessfully' do
